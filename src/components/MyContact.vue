@@ -24,16 +24,6 @@ function sendEmail() {
     })
     .catch();
 }
-function clearForm() {
-  return {
-    errors: [],
-    form: {
-      senderName: null,
-      senderEmail: null,
-      senderMessage: null,
-    },
-  };
-}
 </script>
 
 <template>
@@ -44,11 +34,7 @@ function clearForm() {
     </div>
 
     <div class="form">
-      <form
-        ref="anyName"
-        @submit.prevent="sendEmail() && clearForm()"
-        id="contact"
-      >
+      <form @submit.prevent="sendEmail()" @reset="onReset" ref="myForm">
         <div class="colonnes">
           <label for="first-name">Nom et Prénom</label>
           <input
@@ -65,7 +51,7 @@ function clearForm() {
 
           <input
             class="style"
-            type="email"
+            type="text"
             name="e.mail"
             id="senderEmail"
             required
